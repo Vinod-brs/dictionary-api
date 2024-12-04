@@ -21,7 +21,7 @@ export function Head() {
                 <h4 className='mb-0'>Dictionary</h4>
                 <p className="p-0 m-0 text-start"><b>Purpose: Get definitions of a word using API</b></p>
                 
-                <p className="p-0 m-0 text-start"> <a href="https://github.com/Vinod-brs/react-clock" target="_blank " > <img src="https://vinod-brs.github.io/Tic-Tac-Toe/assets/img/noun-link.png" className="link" alt="" /> Git Repository</a></p>
+                <p className="p-0 m-0 text-start"> <a href="https://github.com/Vinod-brs/dictionary-api" target="_blank " > <img src="https://vinod-brs.github.io/Tic-Tac-Toe/assets/img/noun-link.png" className="link" alt="" /> Git Repository</a></p>
                 <p className="p-0 mt-1 mb-1 text-start"> <a href="https://dictionaryapi.dev" target="_blank " > <img src="https://vinod-brs.github.io/Tic-Tac-Toe/assets/img/noun-link.png" className="link" alt="" /> https://dictionaryapi.dev</a></p>
               </div>
             </div>
