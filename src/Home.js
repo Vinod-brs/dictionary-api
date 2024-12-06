@@ -3,6 +3,7 @@ import './App.css'
 import { HttpGet } from "./core/store/httpHelper";
 import ReactAudioPlayer from 'react-audio-player';
 
+let word = 's';
 
 export const Home = () => {
   const [Load, setLoad] = useState(null);
@@ -10,15 +11,16 @@ export const Home = () => {
   const [noDefinitionFound, setNoDefinitionFound] = useState(null);
   const [wordAudio, setAudio] = useState(null);
 
-  const getWordDetails = async(event) => {
+  const getWordDetails = async(e) => {
+   
+
     setWordDetails(null);
     setNoDefinitionFound(null);
     setLoad('s');
-    event.preventDefault();
     try {
-      if(event.target.search.value) {
+      if(word) {
         setNoDefinitionFound(null);
-        let wordData = await HttpGet(event.target.search.value);
+        let wordData = await HttpGet(word);
         setWordDetails(wordData[0]);
         let audioSrc = wordData[0].phonetics?.filter((e) => e?.audio !== '')[0]?.audio || null;
         setAudio(audioSrc);
@@ -31,14 +33,18 @@ export const Home = () => {
     setLoad(null);
   }
 
+  const type = (e) => {
+    word = e.target.value;
+   getWordDetails()
+  }
+
   return (
     <>
-     
       <div className="row m-0 justify-content-lg-center">
         <div className="col col-4 mt-4">
           <div className="input-group mb-3">
-            <form onSubmit={getWordDetails}>
-              <input name='search' type="search" className="form-control " placeholder="Search for a word here..." aria-label="Search for a word..." aria-describedby="img-search" autoFocus autoComplete="false" />
+            <form>
+              <input name='search' type="search" onChange={type} className="form-control " placeholder="Search for a word here..." aria-label="Search for a word..." aria-describedby="img-search" autoFocus autoComplete="false" />
             </form>
           </div>
         </div>
@@ -46,7 +52,12 @@ export const Home = () => {
       <div className="row m-0 justify-content-lg-center">
         <div className="col col-6 mt-4 text-center">
           {
-            Load && <div className="spinner-border text-info  p-4" role="status"></div> 
+            Load && 
+            <div>
+              <div className="spinner-grow text-info my-2 me-3 p-2" role="status"></div>
+              <div className="spinner-border text-info p-4" role="status"></div>
+              <div className="spinner-grow text-info my-2 ms-3 p-2" role="status"></div>
+            </div>
           }
           {wordDetails &&
             <>
